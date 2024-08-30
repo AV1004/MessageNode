@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const { v4: uuidv4 } = require("uuid");
 const multer = require("multer");
+require("dotenv").config();
 // using express-graphql for handling incoming req
 const { graphqlHTTP } = require("express-graphql");
 
@@ -74,11 +75,10 @@ app.use((error, req, res, next) => {
 });
 
 mongoose
-  .connect(
-    "mongodb+srv://valay:helloAV1004@cluster0.rkg6u7x.mongodb.net/messages?retryWrites=true&w=majority&appName=Cluster0"
-  )
+  .connect(process.env.DB_URL)
   .then((result) => {
     app.listen(8080);
+    console.log("DataBase connected!");
   })
   .catch((err) => {
     console.log(err);
