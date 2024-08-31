@@ -74,10 +74,6 @@ app.use((error, req, res, next) => {
   });
 });
 
-
-
-
-
 mongoose
   .connect(process.env.DB_URL)
   .then((result) => {
